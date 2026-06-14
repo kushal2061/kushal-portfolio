@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #bd {
+            background-color: rgb(239, 202, 154);
+            height: 300px;
+            width: 400px;
+            text-align: center;
+            padding: 10px;
+            border: 2px solid black;
+            border-radius: 10px;
+        }
+
+        h3 {
+            font-size: 27px;
+            padding: 4px;
+
+            border-radius: 5px;
+            background-color: rgb(27, 40, 52);
+            color: aliceblue;
+        }
+
+        #number {
+
+            font-size: 30px;
+            background-color: rgb(177, 235, 233);
+            text-align: center;
+        }
+
+        #display {
+            font-size: 20px;
+            color: rgb(174, 21, 16);
+            font-family: cursive;
+        }
+
+        #submit {
+            background-color: aquamarine;
+            font-size: 30px;
+
+        }
+    </style>
+</head>
+
+<body>
+    <div id="bd">
+
+        <h3 id="h1"> Guess Number between 1 to 50</h1><br>
+
+            <input type="number" id="number"><br><br>
+            <p id="display"> &nbsp;</p>
+            <button id="submit" onclick="display()">Guess</button>
+    </div>
+
+    <script>
+
+        let n = Math.floor(Math.random() * 50 + 1);
+        console.log(n);
+        count = 0;
+
+        function display() {
+
+            let num = document.getElementById("number").value;
+
+
+            if (n == num) {
+
+                document.getElementById("display").textContent = "You were correct :)";
+
+            }
+
+            else if (num == "" || num>50 || num<1) {
+                document.getElementById("display").textContent = " Enter a number from 1 and 50";
+
+            }
+
+            else if (count == 10) {
+                document.getElementById("display").textContent = "You couldnt guess that number it was " + n;
+
+            }
+            else if (num > n) {
+                document.getElementById("display").textContent = " Number is smaller";
+                count++;
+            }
+
+            else if (num < n) {
+                document.getElementById("display").textContent = " Number is bigger";
+                count++;
+            }
+
+            else {
+                document.getElementById("display").textContent = " Error! ";
+
+            }
+            console.log(num);
+
+        }
+
+
+    </script>
+
+
+</body>
+
+</html>

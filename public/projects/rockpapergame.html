@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+        }
+
+        h1 {
+            font-size: 3rem;
+        }
+
+
+        #display button {
+            background-color: rgb(206, 224, 224);
+            font-size: 7rem;
+            margin: 5px 15px;
+            padding: 20px;
+            border-radius: 100px;
+            border: none;
+            cursor: pointer;
+
+        }
+
+        .valueDisplay {
+            font-size: 2rem;
+
+        }
+
+        #displaywinner {
+            font-size: 4.5rem;
+            font-weight: bold;
+            margin: 20px 0px;
+        }
+        .greenText{
+            color: green;
+           
+        }
+        .redText{
+            color: red;
+  
+        }
+
+
+        #reset {
+            background-color: rgb(116, 10, 10);
+            color: white;
+            margin: 30px 0px;
+            padding: 10px 20px;
+            font-size: 30px;
+
+        }
+    </style>
+</head>
+
+<body>
+
+
+    <h1>Rock Paper Scissor</h1>
+
+    <div id="display">
+        <button class="input" value="R"> 👊</button>
+        <button class="input" value="P"> ✋</button>
+        <button class="input" value="S"> ✌️</button>
+    </div>
+
+    <div id="displaywinner">Winner</div>
+    <div class="valueDisplay">Player : <span id="playervalue">0</span> </div>
+    <div class="valueDisplay">Computer : <span id="computervalue">0</span> </div>
+    <button id="reset">RESET</button>
+
+
+
+
+
+    <script>
+        const buttons = document.querySelectorAll(".input");
+        const playerValue = document.getElementById("playervalue");
+        const computerValue = document.getElementById("computervalue");
+        const display = document.getElementById("displaywinner");
+        let player = 0;
+        let computer = 0;
+
+
+        function valueAssign(pvalue) {
+
+            let cvalue;
+            let cnum = Math.floor(Math.random() * 3);
+            switch (cnum) {
+                case 0:
+                    cvalue = "R";
+                    break;
+                case 1:
+                    cvalue = "P";
+                    break;
+                case 2:
+                    cvalue = "S";
+                    break;
+
+            }
+            console.log(pvalue, cvalue);
+            findWinner(pvalue, cvalue);
+
+        }
+
+        buttons.forEach((button) => {
+            button.addEventListener("click", (event) => {
+                pvalue = event.currentTarget.value;
+                console.log(pvalue);
+                valueAssign(pvalue);
+            })
+        })
+
+
+        function findWinner(pvalue, cvalue) {
+
+            display.classList.remove("greenText","redText");
+            if (pvalue == "R" && cvalue == "S" ||
+                pvalue == "P" && cvalue == "R" ||
+                pvalue == "S" && cvalue == "P"
+            ) {
+
+                player++;
+                playerValue.textContent = player;
+                display.textContent = "You win";
+                display.classList.add("greenText");
+                console.log("You win");
+            }
+            else if (cvalue == "R" && pvalue == "S" ||
+                cvalue == "P" && pvalue == "R" ||
+                cvalue == "S" && pvalue == "P"
+            ) {
+                computer++;
+                computerValue.textContent = computer;
+                display.textContent = "You Lose";
+                display.classList.add("redText");
+                console.log("You Lose");
+            }
+            else if (cvalue == pvalue) {
+                display.textContent = "Draw";
+                console.log("Draw");
+            }
+            else {
+                display.textContent = "Error";
+                console.log("Error");
+
+            }
+
+        }
+
+        function reset() {
+            player = 0;
+            computer = 0;
+            computerValue.textContent = "0";
+            playerValue.textContent = "0";
+            display.textContent = "Winner";
+
+        }
+        document.getElementById("reset").addEventListener("click", reset);
+    </script>
+</body>
+
+</html>

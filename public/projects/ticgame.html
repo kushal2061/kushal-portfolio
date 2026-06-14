@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tic Tak Toe</title>
+    
+    <style>
+        body{
+
+            background-color: #9DA9A0;
+            text-align: center;
+
+        }
+        #container {
+           
+            height: 70vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            
+            
+
+        }
+        #ticbdy{
+            height: 70vmin;
+            width: 70vmin;
+            display: flex;
+            
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 5%;
+
+        }
+
+        .box {
+            height: 20vmin;
+            width: 20vmin;
+            background-color: #C0CAAD;
+            border-radius: 5px;
+            border: none;
+            box-shadow: 2px 1px 2px rgb(230, 94, 94);
+            font-size: 5vmin;
+            color: black;
+            
+        }
+        button:hover{
+            background-color: #879571;
+            cursor: pointer;
+            
+        }
+        #reset{
+            height:10vmin;
+            width: 15vmin;
+            background-color: #881b1b;
+            color: aliceblue;
+            font-size: 2vmin;
+            
+        }
+        #display{
+            font-size: 40px;
+            color: rgb(64, 117, 64);
+        }
+
+    </style>
+</head>
+
+<body>
+    <h2>Tic Tak Toe</h2>
+    <div id="container">
+        <div id="ticbdy">
+            <button class="box">   </button>
+            <button class="box">   </button>
+            <button class="box">   </button>
+            <button class="box">   </button>
+            <button class="box">   </button>
+            <button class="box">   </button>
+            <button class="box">   </button>
+            <button class="box">   </button>
+            <button class="box">   </button>
+
+
+        </div>
+        
+    </div>
+    <button id="reset">RESET</button>
+    <p id="display">.</p>
+    
+
+</body>
+<script >
+    const boxs = document.querySelectorAll(".box");
+    
+    let turn0 = true;
+    const winPatterns = [
+        [0, 1, 2],
+        [0, 3, 6],
+        [0, 4, 8],
+        [1, 4, 7],
+        [2, 5, 8],
+        [2, 4, 6],
+        [3, 4, 5],
+        [6, 7, 8],
+    ];
+    
+    boxs.forEach(box => {
+    
+        box.addEventListener('click', () => {
+    
+            if (turn0) {
+                box.style.color = "red";
+                box.textContent = "X";
+                turn0 = false;
+    
+            }
+            else {
+                box.style.color = "green";
+                box.textContent = "O";
+                turn0 = true;
+    
+            }
+            box.disabled = true;
+            checkWinner();
+    
+        });
+    });
+    
+    const checkWinner = () => {
+        for (let position of winPatterns) {
+            let box1 = boxs[position[0]].textContent;
+            let box2 = boxs[position[1]].textContent;
+            let box3 = boxs[position[2]].textContent;
+    
+            if (box1 !== "" && box2 !== "" && box3 !== "") {
+                if (box1 === box2 && box2 === box3) {
+    
+                    document.getElementById("display").textContent = `Winner  ${box1}`;
+    
+                }
+            }
+        }
+    }
+    
+    const reset = () => {
+        turn0 = true;
+        boxs.forEach((box) => {
+            box.disabled = false;
+            box.textContent = "";
+            document.getElementById("display").textContent = "";
+        })
+    }
+    
+    document.getElementById("reset").addEventListener('click', reset);
+    
+    </script>
+</html>

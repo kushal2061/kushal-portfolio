@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: rgb(255, 255, 255);
+            height: 100vh;
+
+        }
+
+
+        #keypad {
+            padding: 10px;
+            text-align: center;
+            background: rgb(0, 105, 105);
+            border: none;
+            font-size: 50px;
+                     
+        }
+
+        .calbody {
+            background-color: rgb(153, 163, 153);
+            padding: 30px;
+            width: 400px;
+            height: 440px;
+            box-shadow: 2px 2px 5px black;
+            border-radius: 5px;
+           
+        }
+        button {
+            height: 20%;
+            width: 20%;
+            background-color: wheat;
+            font-weight: bold;
+            font-size: 2rem;
+            border: 1px solid black;    
+            box-shadow: 5px 5px 4px rgb(66, 55, 35);
+            
+        }
+        #inputvalue {
+            border: none;
+            background-color: rgb(241, 243, 230);
+            width: 98%;
+            font-size: 50px;
+
+        }
+        h4{
+            font-size: 2em;
+            margin: 0px;
+            text-align: center;
+            color: rgb(128, 40, 40);
+            margin-bottom: 10px;
+            text-shadow: 4px 5px 4px rgba(230, 68, 68, 0.5);
+
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="calbody">
+        <h4>Calculator</h4>
+        <div>
+            <input id="inputvalue" disabled> </input><br>
+        </div>
+
+        <div id="keypad">
+        
+            <div>
+                <button onclick="appendvalue('9')">9</button>
+                <button onclick="appendvalue('8')">8</button>
+                <button onclick="appendvalue('7')">7</button>
+                <button onclick="appendvalue('/')">/</button>
+            </div>
+            <div>
+                <button onclick="appendvalue('6')">6</button>
+                <button onclick="appendvalue('5')">5</button>
+                <button onclick="appendvalue('4')">4</button>
+                <button onclick="appendvalue('*')">*</button>
+            </div>
+            <div>
+                <button onclick="appendvalue('3')">3</button>
+                <button onclick="appendvalue('2')">2</button>
+                <button onclick="appendvalue('1')">1</button>
+                <button onclick="appendvalue('+')">+</button>
+            </div>
+            <div>
+                <button onclick="appendvalue('0')">0</button>
+                <button onclick="appendvalue('-')">-</button>
+                <button onclick="appendvalue('.')">.</button>
+                <button id="clear" onclick="clearInput()">C</button>
+            </div>
+            <div>
+                <button onclick="calculate()">=</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+
+        function appendvalue(a) {
+            document.getElementById("inputvalue").value += a;
+            console.log(typeof document.getElementById("inputvalue").value);
+        }
+        function clearInput() {
+            document.getElementById("inputvalue").value = "";
+        }
+        function calculate() {
+            let inputvalue = document.getElementById("inputvalue").value;
+            try {
+                let result = eval(inputvalue);
+                document.getElementById("inputvalue").value = result;
+            }
+            catch (error) {
+                document.getElementById("inputvalue").value = "error";
+            }
+        }
+
+    </script>
+</body>
+
+</html>
