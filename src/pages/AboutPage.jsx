@@ -35,10 +35,6 @@ export default function AboutPage() {
             {/* CONTACT */}
             <div className="space-y-3 text-sm text-ink-light dark:text-text-dark-2">
               <div className="flex items-center gap-2">
-                <IoCall /> +977 9866571692
-              </div>
-
-              <div className="flex items-center gap-2">
                 <IoMail /> kushalkandel25@gmail.com
               </div>
 

@@ -49,7 +49,6 @@ export default function Contact() {
           </p>
           <div className="flex flex-col gap-6">
             {[
-              { icon: Phone, text: "+977 9866571692" },
               { icon: Mail, text: "kushalkandel25@gmail.com" },
               { icon: MapPin, text: "Kathmandu, Nepal" },
             ].map(({ icon: Icon, text }) => (
