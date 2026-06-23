@@ -7,13 +7,7 @@ import WorkPage from "./pages/WorkPage";
 
 import AboutPage from "./pages/AboutPage";
 
-const API = import.meta.env.VITE_API_URL || "http://localhost:8000/api";
-
 export default function App() {
-  useEffect(() => {
-    fetch(`${API}/projects/`).catch(() => {});
-  }, []);
-
   return (
     <div className="min-h-screen bg-bg dark:bg-bg-dark text-ink dark:text-text-dark font-body">
       <Navbar />
