@@ -15,15 +15,15 @@ export default function Contact() {
     setSent(false);
 
     try {
-      await emailjs.send(
-        "YOUR_SERVICE_ID",
-        "YOUR_TEMPLATE_ID",
+      emailjs.send(
+        import.meta.env.VITE_EMAILJS_SERVICE_ID,
+        import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
         {
           name: form.name,
           email: form.email,
           message: form.message,
         },
-        "YOUR_PUBLIC_KEY",
+        import.meta.env.VITE_EMAILJS_PUBLIC_KEY,
       );
 
       setSent(true);
